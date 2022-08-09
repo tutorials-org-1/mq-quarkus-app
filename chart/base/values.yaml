@@ -5,7 +5,7 @@ global: {}
 name: mq-quarkus-app
 
 replicaCount: 1
-logLevel: "debug"
+logLevel: "info"
 
 image:
   repository: replace
@@ -37,14 +37,17 @@ ingress:
 
 #  tlsSecretName: ""
 
-jaegerConfigName: jaeger-config
-jaegerSecretName: jaeger-access
+jaeger:
+  enabled: false
+  configName: jaeger-config
+  secretName: jaeger-access
+  collectorEndpoint: http://jaeger-all-in-one-inmemory-collector.openshift-operators.svc.cluster.local:14268/api/traces
 
 vcsInfo:
   repoUrl: ""
   branch: ""
 
-partOf: ""
+partOf: inventory
 
 connectsTo: ""
 
@@ -52,11 +55,22 @@ runtime: quarkus
 
 configmap:
   CHANNEL: IBM.APP.SVRCONN
-  QM: QUICKSTART
+  CONNECTION_NAME: qm1-ibm-mq.dev.svc.cluster.local(1414)
+  QM: QM1
   QUEUE_NAME: IBM.DEMO.Q
   APP_NAME: MQ-QUARKUS-APP
-  HOST: qm-dev-ibm-mq.dev.svc.cluster.local
-  PORT: 1414
+#  HOST: qm-dev-ibm-mq.dev.svc.cluster.local
+#  PORT: 1414
+
+ccdt:
+  enabled: false
+  # IF CCDT_URL has a value, the CHANNEL, CONNECTION_NAME, and QM are configured from CCDT
+  #CCDT_URL: https://ccdt-no-security-dev.free.beeceptor.com/
+  CCDT_URL: file:///ccdt/ccdt.json
+  volumeName: ccdt
+  volumeMountPath: "/ccdt"
+  configMapName: mq-spring-app-ccdt
+
 
 sealedsecret:
   PASSWORD: AgA5uYN7SSJs8ZUBj1MJ1qdRLfpkb8E/xUqM5uWFACH1Sqf7HEycONn05WZYdp/5ET/KaZgQL0HHbBaMh6SOCjRzfbrfFAjTDUAZdVMRsIjwZllS7ex0R/FDro6jgE7wx9wVuGilzaH3mYykKS5DIqvN7TXxqREhhMZmyCMKWqyJEfwIMDC74ZH74ZS01TmsgmfbzmXs6gSLkFify5v1vr9U1oJly3FQmISf8IInHdpgls3Ube4WSQb5a5q9CPxMYmLVZ/yvPqyjV2oDzRCdVRzVfHgu3b/z+wsxV6LUZXKyRQE0O2SET1QQ87CCsnOaok7l63eHqih2BL2For5mAUdOVOi6cZeip7DU7jOzyjjYpfEqY7nWS+TLCsxiszQcc2Uz8e19858WbotkjL4k9oEE6DCFrJVs36dzWmrJRpncfKdxtCX9fscHn9uRZjsysvYp8PjkKh29GDgLNNybH6GJ2Bnbt7Up4go4UL3uF12gp5gwlMEJDIZM0V3DN9CttLMX2zL73gVzUpWPkSmFch5b4DQdmLKvhtgWzVfGxyDxU7PY55LUPl8kcmYJNjJimLJwBqfRralCyzOLOcGjuy9FqOI6NBX8oFoVBUeL+amkbpwfZdHlxw6KYqNI7DjA8dUsD4d1+/fMYk08y+MT1V/bobl/L9pfCLyUKRT1RqTThEgAoAb0aQB1x4XGpRdUeF6Q2T4=
@@ -70,3 +84,8 @@ certs:
   volumeMountPath: "/certs"
   trustStoreFileName: truststore.jks
   keyStoreFileName: keystore.jks
+
+security: false
+
+postSyncJob:
+  enabled: false
