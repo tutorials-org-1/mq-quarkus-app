@@ -156,10 +156,10 @@ final public class MyJMSTemplate {
 			cf.setIntProperty(WMQConstants.WMQ_CONNECTION_MODE, WMQConstants.WMQ_CM_CLIENT);
 			cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER, mqQmgr);
 			cf.setStringProperty(WMQConstants.WMQ_APPLICATIONNAME, "MQ-QUARKUS-APP");
-			cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, true);
+			cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, false);
 			cf.setStringProperty(WMQConstants.USERID, mqAppUser);
 			cf.setStringProperty(WMQConstants.PASSWORD, mqPassword);
-			cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384");
+			// cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384");
 			return cf;
 		} catch (Throwable e) {
 			e.printStackTrace();
