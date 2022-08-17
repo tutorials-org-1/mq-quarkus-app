@@ -9,12 +9,12 @@ data:
     {
       "channel": [
         {
-          "name": "IBM.APP.SVRCONN",
+          "name": "MIQMCHL",
           "clientConnection": {
             "connection": [
               {
-                "host": "qm-dev-ibm-mq.dev.svc.cluster.local",
-                "port": 1414
+                "host": "qm1-dev-ibm-mq.dev.svc.cluster.local",
+                "port": 443
               }
             ],
             "queueManager": "QM1"

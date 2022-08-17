@@ -159,7 +159,8 @@ final public class MyJMSTemplate {
 			cf.setBooleanProperty(WMQConstants.USER_AUTHENTICATION_MQCSP, false);
 			cf.setStringProperty(WMQConstants.USERID, mqAppUser);
 			cf.setStringProperty(WMQConstants.PASSWORD, mqPassword);
-			// cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384");
+			cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384");
+//			cf.setStringProperty(WMQConstants.WMQ_SSL_CIPHER_SUITE, "TLS_RSA_WITH_AES_128_CBC_SHA256");
 			return cf;
 		} catch (Throwable e) {
 			e.printStackTrace();

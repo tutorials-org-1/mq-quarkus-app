@@ -30,11 +30,11 @@ public class JvmTlsSecurity {
     private String keyStorePassword;
 	
 	@Inject
-	@ConfigProperty(name = "app.truststore", defaultValue = "passw0rd")
+	@ConfigProperty(name = "app.truststore", defaultValue = "/certs/keystore.jks")
     private String trustStore;
 	
 	@Inject
-	@ConfigProperty(name = "app.truststore.pw", defaultValue = "passw0rd")
+	@ConfigProperty(name = "app.truststore.pw", defaultValue = "Passw0rd!")
     private String trustStorePassword;
 	
 	
