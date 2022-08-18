@@ -120,7 +120,7 @@ final public class MyJMSTemplate {
 		}
 	}
 
-	public void sendToQueue(String strToSend, Sting MQqueue) throws JMSException {
+	public void sendToQueue(String strToSend, String MQqueue) throws JMSException {
 		JMSContext context = null;
 		Destination destination = null;
 		JMSProducer producer = null;
