@@ -61,7 +61,7 @@ public class MQClientResource {
 	@Path("/send-to-queue/{queueName}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseData sendHelloToQueueName(@RestPath String queueName) {
+    public ResponseData sendHelloToQueueName(@PathParam String queueName) {
     	String dataSentToQueue = mqService.sendHelloToQueueName(queueName);
     	ResponseData responseData = new ResponseData("OK", "Successfully sent record to MQ", dataSentToQueue);
         return responseData;
