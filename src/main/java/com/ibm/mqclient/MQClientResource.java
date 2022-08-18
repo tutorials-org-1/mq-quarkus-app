@@ -20,6 +20,8 @@ import com.ibm.mqclient.model.ResponseData;
 import com.ibm.mqclient.service.MQService;
 import io.quarkus.runtime.configuration.ProfileManager;
 
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
+
 @Path("/api")
 public class MQClientResource {
 	
@@ -56,4 +58,12 @@ public class MQClientResource {
 	       return responseData;
 	}
 	
+	@Path("/send-to-queue/{queueName}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseData sendHelloToQueueName(@PathParam String queueName) {
+    	String dataSentToQueue = mqService.sendHelloWorld(queueName);
+    	ResponseData responseData = new ResponseData("OK", "Successfully sent record to MQ", dataSentToQueue);
+        return responseData;
+    }
 }

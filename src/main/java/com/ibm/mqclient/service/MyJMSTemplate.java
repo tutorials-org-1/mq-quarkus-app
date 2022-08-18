@@ -120,6 +120,30 @@ final public class MyJMSTemplate {
 		}
 	}
 
+	public void sendToQueue(String strToSend, Sting MQqueue) throws JMSException {
+		JMSContext context = null;
+		Destination destination = null;
+		JMSProducer producer = null;
+
+		try {
+			JmsConnectionFactory cf = getJMSConectionFactory();
+
+			// Create JMS objects
+			context = cf.createContext();
+			producer = context.createProducer();
+			destination = context.createQueue("queue:///" + MQqueue);
+
+			TextMessage message = context.createTextMessage(strToSend);
+			producer.send(destination, message);
+			LOG.debug("Sent message:\n {}", message);
+
+		} catch (Throwable e) {
+			e.printStackTrace();
+			throw (e);
+		}
+	}
+
+
 	public String receiveMessage() throws JMSException {
 		JMSContext context = null;
 		Destination destination = null;
