@@ -82,6 +82,16 @@ spec:
                 configMapKeyRef:
                   key: QUEUE_NAME
                   name: mq-quarkus-app
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: HOST
+                  name: mq-quarkus-app
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: PORT
+                  name: mq-quarkus-app
             - name: APP_NAME
               valueFrom:
                 configMapKeyRef:
