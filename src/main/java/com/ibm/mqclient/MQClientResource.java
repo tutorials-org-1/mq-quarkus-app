@@ -20,7 +20,7 @@ import com.ibm.mqclient.model.ResponseData;
 import com.ibm.mqclient.service.MQService;
 import io.quarkus.runtime.configuration.ProfileManager;
 
-import org.jboss.resteasy.reactive.RestPath;
+//import org.jboss.resteasy.reactive.RestPath;
 
 @Path("/api")
 public class MQClientResource {
